@@ -1,0 +1,110 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s ease; 
+}
+
+.left, .middle, .right {
+    display: flex;
+    transition: flex 0.5s ease; 
+    justify-content: center;
+
+}
+
+
+.left {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    flex: 0.2; 
+    background-color: #FF6B6B;
+
+}
+
+.middle {
+    flex: 2; 
+    background-color: #FFE66D;
+}
+
+.right {
+    flex: 0.2; 
+    background-color: #4ECDC4;
+}
+
+
+.container .left:hover ~ .middle,
+.container .right:hover ~ .middle {
+    flex: 1; 
+}
+
+.container .left:hover {
+    flex: 0.5;
+    
+}
+
+.container .right:hover {
+    flex: 1; 
+}
+
+
+h2, h3 {
+    color: white;
+    font-size: 22px;
+}
+
+
+.profile{
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    margin: 13px;
+    background-color: black;
+    border-radius: 100%;
+    transition: 0.5s;
+    opacity: 1;
+    text-align: center;
+}
+
+.name {
+    position: absolute;
+    margin-top: 265px;
+    text-align: center;
+    opacity: 0;
+    transition: 1s;
+}
+
+.container .left:hover .name{
+    opacity: 1;
+}
+
+.container .left:hover .profile{
+    margin: 90px;
+    margin-left: 100px;
+    width: 150px;
+    height: 150px;
+
+
+
+
+}
+
+
+
+.profile:hover{
+    opacity: 0.5;
+}
+
+

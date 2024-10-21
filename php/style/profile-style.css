@@ -1,0 +1,133 @@
+html, body {
+    font-size: small;
+    font-family: Arial, sans-serif;
+    
+}
+html {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right:  auto;
+}
+.box-body {
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #394867;
+    width: 900px;
+    height: 500px;
+    box-shadow: 10px 10px 5px 5px #c7cacf;
+    color: #F1F6F9;
+}
+
+.profile-pic {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: black;
+    margin-left: 70px;
+    margin-top: 50px;
+    animation: ease-in-out;
+    transition: 1s;
+
+    
+}
+
+
+
+.profile-pic h3 {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+
+.sidebar {
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 300px;
+    height: 500px;
+    background-color: #212A3E;
+
+}
+
+
+#logout{
+    margin-left: 90px;
+    text-align: center;
+    border: solid #394867;
+    width: 100px;
+    height: 20px;
+    color: #F1F6F9;
+    text-decoration: none;
+    transition: 0.5s;
+    animation: ease-in-out;
+    
+}
+#return{
+    margin-left: 90px;
+    margin-top: 120px;
+    text-align: center;
+    border: solid #394867;
+    width: 100px;
+    height: 20px;
+    color: #F1F6F9;
+    text-decoration: none;
+    transition: 0.5s;
+    animation: ease-in-out;
+}
+
+
+#return:hover, #logout:hover {
+    background-color: #394867;
+}   
+
+
+
+.name {
+    margin-top: 240px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+form {
+    
+    margin-left: 350px;
+}
+
+label, input {
+    width: 240px;
+    border-radius: 10px;
+    
+
+}
+
+
+#lname, #mail, #p2{
+    margin-left: 170px;
+    float: right;
+    margin-right: 60px;
+}
+
+input {
+    margin-bottom: 30px;
+    height: 20px;
+    outline: none;
+
+}
+
+input[type="password"]{
+    margin-top: 10px;
+}
+
+
+
+.btn {
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+

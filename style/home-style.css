@@ -1,0 +1,93 @@
+
+html, body {
+    margin: 0; height: 100%; overflow: hidden
+    
+}
+
+html {
+    background-color: #F1F6F9;
+}
+
+.banner {
+
+    height: 100vmax;
+    background-color: #212A3E;
+    width: 150px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transition: ease-in;
+    transition: 1s;
+    
+}
+
+.banner:hover{
+    width: 400px;
+}
+
+
+
+.pfp-blob {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: black;
+    transition: ease-in;
+    transition: 0.1;
+    cursor: pointer;
+
+}
+.banner .pfp-blob{
+    transition: 0.5s;
+}
+
+.banner:hover .pfp-blob{
+    margin-left: 10px;
+}
+
+.pfp-blob h5 {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    color: #F1F6F9;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.pfp-blob:hover h5 { 
+    opacity: 1;
+}
+
+.name {
+    width: 250px;
+    opacity: 0;
+    position: absolute;
+    margin-left: 120px;
+    margin-top: 30px;
+    box-shadow: 5px 5px 5px 2px #9BA4B5;
+    transition: 0.2s;
+    text-align: center;
+    color: #F1F6F9;
+    border: solid #F1F6F9 1px;
+    height: auto;
+}
+
+.banner:hover .name{
+    opacity: 1;
+}
+
+
+
+
+
+.pann {
+    width: 300px; /* Set visible dimensions */
+    height: 300px;
+    background-color: #212A3E; /* Ensure a visible background */
+    border: 2px solid red; /* Add a visible border for debugging */
+    position: relative; /* Ensure it’s positioned properly on the page */
+    z-index: 10; /* Make sure it's above other elements */
+}

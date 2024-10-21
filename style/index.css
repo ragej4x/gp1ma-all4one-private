@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+/*===================pannel=========================*/
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    background-color:#394867;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s ease; 
+
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: auto; /* Center the container */
+}
+
+.left, .middle, .right {
+    display: flex;
+    transition: flex 0.5s ease; 
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+}
+
+.left {
+    flex: 0.3; 
+    background-color: #394867;
+
+}
+
+.middle {
+    flex: 2;
+    background-color: #9BA4B5;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.right {
+    flex: 0.2; 
+    background-color: #394867;
+
+}
+
+.container .left:hover ~ .middle,
+.container .right:hover ~ .middle {
+    flex: 1; 
+}
+
+.container .left:hover {
+    flex: 0.5;   
+}
+
+.container .right:hover {
+    flex: 0.6; 
+}
+
+h2, h3 {
+    color: white;
+    font-size: 22px;
+}
+
+.profile {
+    border: solid #212A3E 4px;
+    position: absolute;
+    width: 10vw; 
+    height: 10vw; 
+    max-width: 90px;
+    max-height: 90px;
+    margin: 13px;
+    margin-left: -40px;
+    background-color: black;
+    border-radius: 50%;
+    transition: 0.5s;
+    opacity: 1;
+    text-align: center;
+}
+
+.name {
+    position: absolute;
+    margin-top: 265px;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s;
+    background-color:#212a3e00;
+    border: solid #212a3e00;
+}
+
+.container .left:hover .name {
+    opacity: 1;
+}
+
+.container .left:hover .profile {
+    margin: 80px;
+    margin-left: -70px;
+    width: 15vw; 
+    height: 15vw; 
+    max-width: 150px; 
+    max-height: 150px; 
+}
+
+.profile:hover {
+    opacity: 0.5;
+}
+
+/* Responsive Design  for mobule*/
+@media (max-width: 468px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+
+/*===================feed=========================*/
+
+h2 {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 300px;
+    height: 30px;
+    position: absolute;
+    z-index: 5;
+    border: #394867 solid;
+    text-align: center;
+    background-color: #394867;
+}
+
+.feed-container {
+    margin-top: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stacking in a column */
+    box-shadow: 10px 10px 10px 2px #394867;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.fb-page { 
+    
+    width: 500px; 
+    height: 500px;
+    border: none; 
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    
+}
+
+/*===================pannel right=========================*/
+
+
+
+.ico-text {
+    position: absolute;
+
+}
+.icons{
+    margin-left: 20px;
+    width: 50px;
+    width: 50px;
+}
+
+#book, #chat, #professor, #tasks, #files{
+    margin-top: 50px;
+    transition: all 0.3 ease;
+}
+
+:hover .book-cont, .chat-cont, .professor-cont, .tasks-cont, .files-cont{
+    cursor: pointer;
+}
+
+.book-cont:hover #book{
+    mix-blend-mode: multiply;
+    content: url('../icons/book.gif');
+    
+}
+
+.chat-cont:hover #chat{
+    mix-blend-mode: multiply;
+    content: url('../icons/chat.gif');
+}
+
+.professor-cont:hover #professor{
+    mix-blend-mode: multiply;
+    content: url('../icons/professor.gif');
+}
+
+.tasks-cont:hover #tasks{
+    mix-blend-mode: multiply;
+    content: url('../icons/tasks.gif');
+}
+
+.files-cont:hover #files{
+    mix-blend-mode: multiply;
+    content: url('../icons/folder.gif');
+}
+
+
+.container .right:hover #book, #chat, #professor, #tasks, #files{
+    margin-right: 300px;
+}
+
+
+
+#a1 {
+    opacity: 0;
+    transition: 0.1s ease;
+    margin-top: -45px;
+} 
+
+#b2 {
+    opacity: 0;
+    transition: 0.2s ease;
+    margin-top: -45px;
+}
+
+#c3 {
+    opacity: 0;
+    transition: 0.3s ease;
+    margin-top: -45px;
+} 
+
+
+#d4 {
+    opacity: 0;
+    transition: 0.4s ease;
+    margin-top: -45px;
+}
+
+
+
+#e5{
+    opacity: 0;
+    transition: 0.5s ease;
+    margin-top: -45px;
+}
+
+.container .right:hover #a1, 
+.container .right:hover #b2,
+.container .right:hover #c3,
+.container .right:hover #d4,
+.container .right:hover #e5{
+    opacity: 1;
+    margin-left: 100px;
+    
+}
+
+.book-cont:hover #a1, 
+.chat-cont:hover #b2,
+.professor-cont:hover #c3,
+.tasks-cont:hover #d4,
+.files-cont:hover #e5{
+    color: #8398bf;
+    scale: 0.9;
+    
+}
