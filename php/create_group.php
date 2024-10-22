@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute([$group_id, $user_id]);
 
     echo "Group created successfully!";
-    header('Location: chat_dashboard.php');
+    header("Location: group.php?group_id=$group_id");
     exit;
 }
 ?>
@@ -44,6 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 
     <br>
-    <a href="chat.php">Back to Chat</a>
+    <a href="index.php">Back to Chat</a>
 </body>
 </html>

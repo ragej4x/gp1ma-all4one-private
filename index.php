@@ -81,9 +81,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="right">
             <div class="selections">
                 <div class="ico-label">
+
                     <div class="book-cont" ><img class="icons" id="book" src="icons/book.png" alt="Error Unable to load asset"><h3 id="a1"  class="ico-text" >Lessons</h3></div>
-                    <div class="chat-cont"><a href= "php/chat.php"> <img class="icons" id="chat" src="icons/chat.png" alt="Error Unable to load asset"> <h3 id="b2" class="ico-text">Chats</h3></a></div>
-                    <div class="professor-cont" ><img class="icons"id="professor" src="icons/professor.png" alt="Error Unable to load asset"><br><h3 id="c3" class="ico-text">Teachers</h3></div>
+
+                    <div class="group-cont"><a href= "php/index.php"> <img class="icons" id="group" src="icons/group.png" alt="Error Unable to load asset"> <h3 id="b2" class="ico-text">Chats</h3></a></div>
+
+                    <div class="professor-cont" ><a href= "php/index.php"><img class="icons"id="professor" src="icons/professor.png" alt="Error Unable to load asset"><br><h3 id="c3" class="ico-text">Teachers</h3></a></div>
+
                     <div class="tasks-cont"><img class="icons" id="tasks" src="icons/tasks.png" alt="Error Unable to load asset"><br><h3 id="d4" class="ico-text">Assignment</h3></div>
                     <div class="files-cont" ><img class="icons" id="files" src="icons/folder.png" alt="Error Unable to load asset"><br><h3 id="e5" class="ico-text">My Files</h3></div>
                     

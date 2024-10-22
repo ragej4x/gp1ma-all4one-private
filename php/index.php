@@ -60,7 +60,7 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php if (count($groups) > 0): ?>
                 <?php foreach ($groups as $group): ?>
                     <li>
-                        <a href="group_chat.php?group_id=<?php echo $group['id']; ?>">
+                        <a href="group.php?group_id=<?php echo $group['id']; ?>">
                             <?php echo htmlspecialchars($group['name']); ?>
                         </a>
                     </li>
@@ -77,7 +77,7 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php if (count($users) > 0): ?>
                 <?php foreach ($users as $user): ?>
                     <li>
-                        <a href="private_chat.php?user_id=<?php echo $user['id']; ?>">
+                        <a href="private.php?user_id=<?php echo $user['id']; ?>">
                             <?php echo htmlspecialchars($user['username']); ?>
                         </a>
                     </li>
@@ -89,8 +89,8 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <a href="friend_dashboard.php">Friend Dashboard</a><br>
-
-    <a href="logout.php">Logout</a>
+    <a href="create_group.php">Create Group</a><br>
+    <a href="../index.php">Return</a>
 
 </body>
 </html>
