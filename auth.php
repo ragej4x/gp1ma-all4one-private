@@ -6,26 +6,39 @@ error_reporting(E_ALL);
 session_start();
 include 'php/db.php'; 
 
+$error = ""; 
+$register_error = ""; 
+
+
 if (isset($_POST['register'])) {
+
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash the password
+
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // hash bka kasi may kupal
 
     $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)");
+    
+    
     if ($stmt->execute([$first_name, $last_name, $username, $email, $password])) {
+
         $_SESSION['user_id'] = $pdo->lastInsertId();
         $_SESSION['username'] = $username;
         header('Location: index.php');
         exit;
-    } else {
+    } 
+    else {
         $error = "Registration failed. Please try again.";
     }
 }
 
-// Handle login
+
+
+
 if (isset($_POST['login'])) {
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -33,88 +46,184 @@ if (isset($_POST['login'])) {
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header('Location: index.php');
-        exit;
-    } else {
-        $error = "Invalid Username or Password" ;
-    }
-
-
     if ($user) {
+
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             header('Location: index.php');
             exit;
+
+
         } 
-            
-        
+        else {
+            $error = "Invalid Email or Password";
+        }
+    } 
+    else {
+        $error = "Invalid Email or Password";
     }
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="style/style.css">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>GP1MA</title>
+    <link rel="stylesheet" href="style/auth-style.css">
 
-    </head>
-    <body>
-        <div class="center">
-        <div class="box-body">
+</head>
 
-                    
-                
-            <div id="login-page">
-                <br><br><br>
-                <br><br><br>
-                <title>Login</title>
-                <form action="" method="POST">
+<body>
+<div class="container">
 
-                    <?php if (!empty($error)): ?>
-                        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
-                    <?php endif; ?>
+        <section class="forms-section">
 
-                    <input required class='input' name="email" type="login" placeholder="Email"><br>
-                    <input required class='input' name="password" type="password" placeholder="password"><br>
-                    <input class="btn" name="login" type="submit" value="Login">
-                    <input class="btn" type="button" value="Register" onclick="showReg()">
-                    
-                </form>
-                
-            </div>
+            <h1 class="section-title"></h1>
+            <div class="forms">
 
-            <div id="reg-page">
-                <title>Regster</title>
-                <div>
-                    <form id="reg-form" action="" method="POST">
-                    <br><br>
-                    <br>
-                        <input required class='input' type="text" name="first_name" placeholder="First Name"><br>
-                        <input required class='input'  type="text" name="last_name" placeholder="Last Name"><br>
-                        <input required class='input' type="text" name="username" placeholder="Username"><br>
-                        <input required class='input' type="email" name="email" placeholder="Email" id="mail-1"><br>
-                        <input required class='input' type="password" name="password" placeholder="Password" id="pass-1"><br>
-                        <input required class='input' type="password" placeholder="Confirm Password" id="con-pass"><br>
-                        <input class='btn' type="submit" name="register" value="Register">
-                        <input class='btn' type="button" value="Login Instead" onclick="showLp()">
+
+                <div class="form-wrapper is-active">
+                    <button type="button" id="login-swt"class="switcher switcher-login">Login<span class="underline"></span></button>
+                    <form class="form form-login" method="POST">
+                        <fieldset>
+
+
+                            <legend>Please, enter your email and password for login.</legend>
+                            <div class="input-block">
+                                <label for="login-email">E-mail</label>
+                                <input id="login-email" name="email" type="email" required>
+                            </div>
+
+
+                            <div class="input-block">
+                                <label for="login-password">Password</label>
+                                <input id="login-password" name="password" type="password" required>
+                            </div>
+
+                            <?php if ($error): ?>
+                                <div class="input-block" style="color: red; margin-top: 10px; text-align:center;"><?php echo $error; ?></div>
+                            <?php endif; ?>
+                        
+                        </fieldset>
+                        <button name="login" type="submit" class="btn-login">Login</button>
                     </form>
+                </div>
 
+
+                <div class="form-wrapper">
+
+                    <button type="button" id="reg-swt" class="switcher switcher-signup">Sign Up<span class="underline"></span></button>
+                    <form id="reg-form" class="form form-signup" method="POST" onsubmit="return validatePasswords();">
+                        
+                    <fieldset>
+
+
+                            <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+                            
+                            <div class="input-block">
+
+                                <label for="signup-fname">First Name</label>
+                                <label for="signup-lname">Last Name</label>
+                                <input id="signup-fname" name="first_name" type="text" required>
+                                <input id="signup-lname" name="last_name" type="text" required>
+                            
+                            </div>
+
+
+                            <div class="input-block">
+                                <label for="signup-email">E-mail</label>
+                                <input id="signup-email" name="email" type="email" required>
+                            </div>
+
+                            <div class="input-block">
+
+                                <label for="signup-username">User Name</label>
+                                <input id="signup-username" name="username" type="text" required>
+                            
+                            </div>
+                            
+                            
+                            <div class="input-block">
+
+                                <label for="signup-password">Password</label>
+                                <label for="signup-password-confirm">Confirm Password</label>
+                                <input id="signup-password" name="password" type="password" required>
+                                <input id="signup-password-confirm" name="confirm_password" type="password" required>
+                                <span id="password-error" class="error" style="display: none;">Passwords do not match!</span>
+                            
+                            </div>
+
+                        </fieldset>
+                        
+                        <button name="register" type="submit" class="btn-signup">Continue</button>
+                    </form>
+                
                 </div>
             </div>
-
-        </div>
-        </div>
         
+        </section>
+    </div>
+    
+    <script>
 
-    </body>
-    <script src="actions.js"></script>
-    <script src="form.js"></script>
 
+    // android script !!! fixthis !!!! !!! !!! bka nakakalimutan mo ungflex ng mga div ng mobile shit
+    document.addEventListener('DOMContentLoaded', function() {
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
+        
+        //fck this shit
+        if (isMobile) {
+            const meta = document.createElement('meta');
+            meta.name = "viewport";
+            meta.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+            
+            document.head.appendChild(meta);
+        }
+    });
+
+
+    function removeClassOnMobile() {
+
+
+    const signupElement = document.querySelector('.switcher-signup');
+    const loginElement = document.querySelector('.switcher-login'); 
+
+    if (window.innerWidth <= 768) {
+        if (signupElement) {
+            console.log(loginElement);
+            signupElement.classList.remove('switcher-signup');
+        }
+        if (loginElement) {
+            loginElement.classList.remove('switcher-login'); 
+    } 
+    else {
+
+        if (signupElement) {
+            signupElement.classList.add('switcher-signup'); 
+        }
+        if (loginElement) {
+            console.log(loginElement);
+            loginElement.classList.add('switcher-login'); 
+    }
+}
+
+    window.addEventListener('load', removeClassOnMobile);
+    window.addEventListener('resize', removeClassOnMobile);
+
+
+    window.addEventListener('load', removeClassOnMobile);
+    window.addEventListener('resize', removeClassOnMobile);
+
+    </script>
+
+
+    <script src="javascript/auth-switcher.js"></script>
+    <script src="javascript/scaler.js"></script>
+    <script src="javascript/confirmation.js"></script>
+
+
+</body>
 </html>
