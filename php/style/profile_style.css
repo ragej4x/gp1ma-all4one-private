@@ -1,0 +1,191 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 750px;
+    max-width: 100%;
+    display: flex;
+    padding: 20px;
+    overflow: hidden; /* Prevents scrolling */
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    background-color: #394867; /* Left panel color */
+    border-radius: 10px;
+    padding: 20px;
+    color: #F1F6F9; /* Text color */
+ /* Space out children, pushing button to bottom */
+}
+
+.profile-pic {
+    border: solid #2e343f 5px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #cccccc;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h2 {
+    margin: 10px 0;
+    color: #F1F6F9; /* Text color */
+    text-align: center;
+}
+
+
+.side-pan-button{
+    display: flex;
+    margin-top: 30px;
+    text-size-adjust: 50px;    
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons */
+    margin-top: 100%;
+    justify-content: space-between; /* Space out children, pushing button to bottom */
+}
+
+a {
+    color: #F1F6F9; /* Text color */
+    text-decoration: none;
+    margin: 5px 0;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #cbd3da; /* Lighter shade for hover effect */
+}
+
+.right-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 95%;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items on either side */
+    width: 100%;
+    margin-top: 10px; /* Add space above the file upload */
+}
+
+.file-input {
+    display: none; /* Hide the default file input */
+}
+
+.file-button {
+    background-color: #394867; /* Button background color */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size */
+    transition: background-color 0.3s ease;
+    height: 40px; /* Set a consistent height */
+    width: 150px; /* Set fixed width */
+    text-align: center; /* Center text */
+}
+
+.file-button:hover {
+    background-color: #2e343f; /* Darker shade for hover effect */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center the button group */
+    width: 100%;
+    margin-top: 10px; /* Add space above the buttons */
+}
+
+.update-button {
+    margin-left: 10px;
+    background-color: #394867;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px; /* Ensure padding is the same as file button */
+    cursor: pointer;
+    font-size: 14px; /* Ensure font size matches file button */
+    transition: background-color 0.3s ease;
+    height: 40px; /* Set a consistent height */
+    width: 150px; /* Set the same fixed width */
+}
+
+.update-button:hover {
+    background-color: #394867; /* Darker shade for hover effect */
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        width: 100%;
+        padding: 15px;
+        overflow: hidden; /* Prevents scrolling on mobile */
+    }
+
+    .left-panel {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}

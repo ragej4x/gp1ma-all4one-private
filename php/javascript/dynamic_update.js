@@ -1,32 +1,48 @@
+// dyanamic update need pa i optmize
 function loadFriends() {
+
     fetch('friend_dashboard.php?action=get_friends')
-        .then(response => response.text()) // Get the response as text
+
+        .then(response => response.text())
         .then(text => {
-            console.log('Raw response for friends:', text); // Log the raw response
-            const data = JSON.parse(text); // Then parse
+
+            console.log('Raw response for friends:', text); 
+
+            const data = JSON.parse(text); 
+
             const friendList = document.querySelector('.friend-list:nth-of-type(1) ul');
-            friendList.innerHTML = ''; // Clear existing list
+            friendList.innerHTML = '';
             if (data.friends.length > 0) {
                 data.friends.forEach(friend => {
                     const li = document.createElement('li');
                     li.innerHTML = `<a href="private_chat.php?user_id=${friend.id}">${friend.username}</a>`;
                     friendList.appendChild(li);
                 });
-            } else {
+            } 
+            else {
                 friendList.innerHTML = '<li>You have no friends yet.</li>';
             }
         })
         .catch(error => console.error('Error loading friends:', error));
 }
 
+//=
 function loadPendingRequests() {
+
     fetch('friend_dashboard.php?action=get_pending_requests')
-        .then(response => response.text()) // Get the response as text
+        .then(response => response.text())
+
         .then(text => {
-            console.log('Raw response for pending requests:', text); // Log the raw response
-            const data = JSON.parse(text); // Then parse
+
+
+            console.log('Raw response for pending requests:', text); 
+
+            const data = JSON.parse(text);
+            
             const pendingRequestList = document.querySelector('.friend-list:nth-of-type(2) ul');
-            pendingRequestList.innerHTML = ''; // Clear existing list
+            
+            pendingRequestList.innerHTML = ''; 
+            //
             if (data.pending_requests.length > 0) {
                 data.pending_requests.forEach(request => {
                     const li = document.createElement('li');
@@ -35,7 +51,8 @@ function loadPendingRequests() {
                         <a href="javascript:void(0);" onclick="handleRequest('${request.sender_id}', 'decline')">[Decline]</a>`;
                     pendingRequestList.appendChild(li);
                 });
-            } else {
+            } 
+            else {
                 pendingRequestList.innerHTML = '<li>No pending friend requests.</li>';
             }
         })
