@@ -1,268 +1,186 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
-}
-/*===================pannel=========================*/
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
 }
 
-html {
-    background-color:#394867;
+body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }
 
 .container {
+
     display: flex;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     transition: all 0.5s ease; 
-
-    max-width: 1200px; /* Maximum width for larger screens */
-    margin: auto; /* Center the container */
 }
 
-.left, .middle, .right {
-    display: flex;
-    transition: flex 0.5s ease; 
-    justify-content: center;
-    align-items: flex-start; /* Align items at the top */
-}
 
-.left {
-    flex: 0.3; 
+.left-panel {
+
     background-color: #394867;
-
-}
-
-.middle {
-    flex: 2;
-    background-color: #9BA4B5;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.right {
     flex: 0.2; 
-    background-color: #394867;
-
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    transition: flex 0.5s ease; 
+    overflow: hidden;
 }
 
-.container .left:hover ~ .middle,
-.container .right:hover ~ .middle {
-    flex: 1; 
+.profile-container {
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px; 
 }
 
-.container .left:hover {
-    flex: 0.5;   
-}
+.profile-pic {
 
-.container .right:hover {
-    flex: 0.6; 
-}
-
-h2, h3 {
-    color: white;
-    font-size: 22px;
-}
-
-.profile {
-    border: solid #212A3E 4px;
-    position: absolute;
-    width: 10vw; 
-    height: 10vw; 
-    max-width: 90px;
-    max-height: 90px;
-    margin: 13px;
-    margin-left: -55px;
-    background-color: black;
     border-radius: 50%;
-    transition: 0.5s;
-    opacity: 1;
-    text-align: center;
+    width: 80px;
+    height: 80px;
+    transition: width 0.5s ease, height 0.5s ease; 
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+.profile-name {
+
+    color: white;
     margin-top: 10px;
+    opacity: 0; 
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+    font-size: 16px;
+    transform: translateY(10px);
 }
 
-.name {
-    position: absolute;
-    margin-top: 265px;
-    text-align: center;
-    opacity: 0;
-    transition: 0.5s;
-    background-color:#212a3e00;
-    border: solid #212a3e00;
+.left-panel.expanded {
+    flex: 0.3; 
+ }
+
+
+.left-panel.expanded .profile-pic {
+    width: 150px;
+    height: 150px;
 }
 
-.container .left:hover .name {
+.left-panel.expanded .profile-name {
+
     opacity: 1;
-    margin-right: 10px;
+    transform: translateY(0);
 }
 
-.container .left:hover .profile {
-    margin: 80px;
-    margin-left: -80px;
-    width: 15vw; 
-    height: 15vw; 
-    max-width: 150px; 
-    max-height: 150px; 
+.profile-name{
+
 }
 
-.profile:hover {
-    opacity: 0.5;
+.feed-section {
+    flex: 1;
+    background-color: #9BA4B5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
 }
 
-/* Responsive Design  for mobule*/
-@media (max-width: 468px) {
+.feed {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
 
+.right-panel {
+    background-color: #394867;
+    flex: 0.1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    transition: flex 0.5s ease; 
+    overflow: hidden; 
+}
+
+.right-panel.expanded {
+    flex: 0.3; 
+    align-items: flex-start; 
+}
+
+.icon {
+    margin: 15px 0; 
+    cursor: pointer;
+    text-align: left; 
+    transition: transform 0.3s ease;
+}
+
+.icon img {
+    width: 50px;
+    height: 50px;
+    transition: all 0.5s ease;
+}
+
+.icon-label {
+
+    color: white;
+    display: none;
+}
+
+.right-panel.expanded .icon-label {
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+.right-panel.expanded .icon img {
+    display: inline-block; 
+    margin-left: 50px;
+}
+
+.icon:hover {
+    mix-blend-mode:multiply;
+    transform: scale(1.1); 
+}
+
+.icon#book:hover img {
+    content: url('icons/book.gif'); 
+}
+
+.icon#chat:hover img {
+    content: url('icons/group.gif');
+}
+
+.icon#professor:hover img {
+    content: url('icons/professor.gif');
+}
+
+.icon#tasks:hover img {
+    content: url('icons/tasks.gif');
+}
+
+.icon#files:hover img {
+    content: url('icons/folder.gif');
+}
+
+@media (max-width: 700px) {
+    .left-panel {
+        flex: 0.3;
+    }
+    .right-panel {
+        flex: 0.2;
+    }
 }
 
 @media (max-width: 480px) {
-
-}
-
-
-/*===================feed=========================*/
-
-h2 {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    width: 300px;
-    height: 30px;
-    position: absolute;
-    z-index: 5;
-    border: #394867 solid;
-    text-align: center;
-    background-color: #394867;
-}
-
-.feed-container {
-    margin-top: 40px;
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Stacking in a column */
-    box-shadow: 10px 10px 10px 2px #394867;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
-.fb-page { 
-
-    width: 500px; 
-    height: 500px;
-    border: none; 
-    overflow: hidden; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    background-color: #fff; 
-    
-}
-
-/*===================pannel right=========================*/
-
-
-
-.ico-text {
-    position: absolute;
-
-}
-.icons{
-    margin-left: 40px;
-    width: 50px;
-    width: 50px;
-}
-
-#book, #group, #professor, #tasks, #files{
-    margin-top: 50px;
-    transition: all 0.3 ease;
-}
-
-:hover .book-cont, .group-cont, .professor-cont, .tasks-cont, .files-cont{
-    cursor: pointer;
-}
-
-.book-cont:hover #book{
-    mix-blend-mode: multiply;
-    content: url('../icons/book.gif');
-    
-}
-
-.group-cont:hover #group{
-    mix-blend-mode: multiply;
-    content: url('../icons/group.gif');
-}
-
-.professor-cont:hover #professor{
-    mix-blend-mode: multiply;
-    content: url('../icons/professor.gif');
-}
-
-.tasks-cont:hover #tasks{
-    mix-blend-mode: multiply;
-    content: url('../icons/tasks.gif');
-}
-
-.files-cont:hover #files{
-    mix-blend-mode: multiply;
-    content: url('../icons/folder.gif');
-}
-
-
-.container .right:hover #book, #group, #professor, #tasks, #files{
-    margin-right: 300px;
-}
-
-
-
-#a1 {
-    opacity: 0;
-    transition: 0.1s ease;
-    margin-top: -45px;
-} 
-
-#b2 {
-    opacity: 0;
-    transition: 0.2s ease;
-    margin-top: -45px;
-}
-
-#c3 {
-    opacity: 0;
-    transition: 0.3s ease;
-    margin-top: -45px;
-} 
-
-
-#d4 {
-    opacity: 0;
-    transition: 0.4s ease;
-    margin-top: -45px;
-}
-
-
-
-#e5{
-    opacity: 0;
-    transition: 0.5s ease;
-    margin-top: -45px;
-}
-
-.container .right:hover #a1, 
-.container .right:hover #b2,
-.container .right:hover #c3,
-.container .right:hover #d4,
-.container .right:hover #e5{
-    opacity: 1;
-    margin-left: 120px;
-    
-}
-
-.book-cont:hover #a1, 
-.group-cont:hover #b2,
-.professor-cont:hover #c3,
-.tasks-cont:hover #d4,
-.files-cont:hover #e5{
-    color: #8398bf;
-    scale: 0.9;
-    
+    .profile-name {
+        font-size: 14px;
+    }
+    .icon img {
+        width: 40px; 
+        height: 40px; 
+    }
 }
