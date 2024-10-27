@@ -18,7 +18,6 @@ if ($action) {
     switch ($action) {
         case 'add_friend':
             $username_to_add = trim($_POST['username']);
-            // Check if user exists
             $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
             $stmt->execute([$username_to_add]);
             $friend = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,13 +25,11 @@ if ($action) {
             if ($friend) {
                 $friend_id = $friend['id'];
 
-                // Check if friendship already exists
                 $stmt = $pdo->prepare("SELECT * FROM friends WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)");
                 $stmt->execute([$user_id, $friend_id, $friend_id, $user_id]);
                 $friendship = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if (!$friendship) {
-                    // Send friend request
                     $stmt = $pdo->prepare("INSERT INTO friends (sender_id, receiver_id, status) VALUES (?, ?, 'pending')");
                     $stmt->execute([$user_id, $friend_id]);
                     echo json_encode(['success' => true, 'message' => 'Friend request sent']);
@@ -46,7 +43,6 @@ if ($action) {
 
         case 'accept_friend':
             $friend_id = $_POST['friend_id'];
-            // Accept friend request
             $stmt = $pdo->prepare("UPDATE friends SET status = 'accepted' WHERE sender_id = ? AND receiver_id = ?");
             $stmt->execute([$friend_id, $user_id]);
             echo json_encode(['success' => true, 'message' => 'Friend request accepted']);
@@ -54,7 +50,6 @@ if ($action) {
 
         case 'decline_friend':
             $friend_id = $_POST['friend_id'];
-            // Decline friend request
             $stmt = $pdo->prepare("DELETE FROM friends WHERE sender_id = ? AND receiver_id = ?");
             $stmt->execute([$friend_id, $user_id]);
             echo json_encode(['success' => true, 'message' => 'Friend request declined']);

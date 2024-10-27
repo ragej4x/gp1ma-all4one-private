@@ -112,3 +112,40 @@ CREATE TABLE uploaded_files (
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (parent_id) REFERENCES uploaded_files(id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    profile_picture VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE assignments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    deadline DATE,
+    teacher_id INT,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+    
+
+);
+
+
+ALTER TABLE assignments ADD COLUMN file_attachment VARCHAR(255) AFTER description;
+ALTER TABLE assignments MODIFY COLUMN deadline DATETIME;
+
+
+CREATE TABLE modules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    date DATE,
+    file_attachment VARCHAR(255) DEFAULT NULL,
+    teacher_id INT,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
+

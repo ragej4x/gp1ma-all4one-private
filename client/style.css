@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+form {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input, textarea, button, select {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+h2 {
+    text-align: center;
+}
+.assignments, .modules {
+    margin: 20px auto;
+    max-width: 800px;
+}
