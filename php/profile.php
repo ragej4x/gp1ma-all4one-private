@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php'; // Make sure to include your database connection here
+include 'db.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../auth.php');
@@ -13,7 +13,6 @@ $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Gather user inputs
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $username = $_POST['username'];
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Handle password change if needed
     if (!empty($password)) {
         if ($password === $confirm_password) {
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -38,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $_SESSION['username'] = $username;
 
-    // Profile picture upload
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["profile_pic"]["name"]);
@@ -74,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="profile-container">
         <div class="left-panel">
             <?php
-            // Profile picture display logic
             $profile_pic = !empty($user['profile_pic']) && file_exists("uploads/" . $user['profile_pic']) 
                 ? "uploads/" . htmlspecialchars($user['profile_pic']) 
                 : "uploads/default-profile.png"; // Fallback image

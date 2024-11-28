@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Fetch files and folders from the database
 $stmt = $pdo->prepare("SELECT * FROM uploaded_files ORDER BY is_folder DESC, uploaded_at DESC");
 $stmt->execute();
 $files = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,6 +13,8 @@ $files = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Management</title>
     <link rel="stylesheet" href="style/cloud-flm-style.css">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
+
 </head>
 <body>
 

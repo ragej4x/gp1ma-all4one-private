@@ -139,6 +139,7 @@ ALTER TABLE assignments ADD COLUMN file_attachment VARCHAR(255) AFTER descriptio
 ALTER TABLE assignments MODIFY COLUMN deadline DATETIME;
 
 
+
 CREATE TABLE modules (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
@@ -149,3 +150,5 @@ CREATE TABLE modules (
     FOREIGN KEY (teacher_id) REFERENCES teachers(id)
 );
 
+ALTER TABLE modules ADD COLUMN subject VARCHAR(255) NOT NULL;
+ALTER TABLE assignments ADD COLUMN subject VARCHAR(255) NOT NULL;

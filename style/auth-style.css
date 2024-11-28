@@ -20,6 +20,7 @@ html, body {
     transform: translateY(-50%) scale(0.6);
     color: #F1F6F9; 
     transition: transform 0.1s ease; 
+    margin-right: 100px;
 }
 
 body {
@@ -410,5 +411,11 @@ form [for=signup-password-confirm] {
 
     }
 
+
+}
+
+
+#logo{
+    filter: drop-shadow(-10px -10px 10px rgb(172, 171, 171));
 
 }

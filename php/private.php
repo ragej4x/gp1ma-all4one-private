@@ -18,7 +18,6 @@ if (!$chat_user_id) {
     exit;
 }
 
-// Fetch the chat user details
 $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
 $stmt->execute([$chat_user_id]);
 $chat_user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +27,6 @@ if (!$chat_user) {
     exit;
 }
 
-// Handle sending message via AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == 'send_message') {
     if (empty($_POST['message'])) {
         echo json_encode(['status' => 'error', 'message' => 'Message cannot be empty.']);
@@ -43,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     exit;
 }
 
-// Handle fetching messages via AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == 'fetch_messages') {
     $stmt = $pdo->prepare("
         SELECT sender_id, message, timestamp 
@@ -63,8 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     exit;
 }
 
-// Handle AJAX request to return chat content only
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-    include 'chat-content.php'; // Return chat content for AJAX
+    include 'chat-content.php'; 
     exit;
 }

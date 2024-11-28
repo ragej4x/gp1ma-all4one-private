@@ -10,6 +10,5 @@ form.addEventListener('submit', function(event) {
     if (password !== confirmPassword) {
         event.preventDefault();
         alert("Password Missmatch!")
-
     }
 });

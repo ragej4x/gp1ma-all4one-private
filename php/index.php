@@ -120,6 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <title>Chat Dashboard</title>
 
     <link rel="stylesheet" href="style/index-style.css">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
+
 </head>
 <body>
 <div class="chat-container">
@@ -143,7 +145,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     </li>
                 <?php endforeach; ?>
             </ul>
+
         </div>
+        <footer>
+        <div class='nav-txt' style='bottom:0; position:absolute; margin-bottom: 10px; width:90%;'>
+            <a style='color: #ecf0f1;' href="../index.php" >Return</a>
+            <a style='color: #ecf0f1; margin-left:13%;' href="friend_dashboard.php">Friend Dashboard</a>
+        
+        </div>
+
+        </footer>
 
         <div id="groupChat" class="chat-list">
             <h3>Your Groups</h3>

@@ -13,5 +13,5 @@ session_destroy();
 header('Location: ../auth.php');
 exit;
 
-//kung makita mo man to sir haha :,) ako lng gumawa neto lahat
+//kung makita mo man to sir lab u sir
 ?>

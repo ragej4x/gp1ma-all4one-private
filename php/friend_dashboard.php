@@ -12,11 +12,9 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Handle Add Friend by Username via AJAX
 if (isset($_POST['action']) && $_POST['action'] == 'add_by_username' && isset($_POST['add_friend_username'])) {
     $username_to_add = trim($_POST['add_friend_username']);
 
-    // Check if user exists
     $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->execute([$username_to_add]);
     $friend = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -24,13 +22,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'add_by_username' && isset($_
     if ($friend) {
         $friend_id = $friend['id'];
 
-        // Check if a friendship already exists
         $stmt = $pdo->prepare("SELECT * FROM friends WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)");
         $stmt->execute([$user_id, $friend_id, $friend_id, $user_id]);
         $friendship = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$friendship) {
-            // Send friend request
             $stmt = $pdo->prepare("INSERT INTO friends (sender_id, receiver_id, status) VALUES (?, ?, 'pending')");
             $stmt->execute([$user_id, $friend_id]);
             echo json_encode(['status' => 'success']);
@@ -41,7 +37,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'add_by_username' && isset($_
     exit;
 }
 
-// Handle Accept or Decline Friend Requests
 if (isset($_POST['action']) && isset($_POST['friend_id'])) {
     $action = $_POST['action'];
     $friend_id = $_POST['friend_id'];
@@ -61,9 +56,7 @@ if (isset($_POST['action']) && isset($_POST['friend_id'])) {
     exit;
 }
 
-// Handle fetching updates (friends list and pending requests)
 if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
-    // Fetch confirmed friends
     $stmt = $pdo->prepare("SELECT users.id, users.username FROM friends 
                            JOIN users ON (friends.sender_id = users.id OR friends.receiver_id = users.id) 
                            WHERE (friends.sender_id = ? OR friends.receiver_id = ?) 
@@ -72,7 +65,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
     $stmt->execute([$user_id, $user_id, $user_id]);
     $friends = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Fetch incoming friend requests
     $stmt = $pdo->prepare("SELECT sender_id, users.username FROM friends 
                            JOIN users ON users.id = friends.sender_id
                            WHERE friends.receiver_id = ? AND friends.status = 'pending'");
@@ -124,7 +116,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
     </div>
 
     <script>
-        // Function to update the friend list and pending requests dynamically
         function fetchUpdates() {
             const formData = new FormData();
             formData.append('action', 'fetch_updates');
@@ -135,9 +126,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
             })
             .then(response => response.json())
             .then(data => {
-                // Update friends list
                 const friendList = document.getElementById('friend-list').querySelector('ul');
-                friendList.innerHTML = ''; // Clear existing list
+                friendList.innerHTML = ''; 
                 if (data.friends.length > 0) {
                     data.friends.forEach(friend => {
                         friendList.innerHTML += `<li>${friend.username}</li>`;
@@ -146,9 +136,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
                     friendList.innerHTML = '<li>No friends yet.</li>';
                 }
 
-                // Update pending friend requests
                 const pendingList = document.getElementById('pending-requests').querySelector('ul');
-                pendingList.innerHTML = ''; // Clear existing list
+                pendingList.innerHTML = '';
                 if (data.incoming_requests.length > 0) {
                     data.incoming_requests.forEach(request => {
                         pendingList.innerHTML += `
@@ -161,14 +150,12 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
                     pendingList.innerHTML = '<li>No pending friend requests.</li>';
                 }
 
-                // Add event listeners for accept/decline buttons
                 document.querySelectorAll('.accept, .decline').forEach(button => {
                     button.addEventListener('click', handleFriendRequest);
                 });
             });
         }
 
-        // Function to handle accepting or declining friend requests
         function handleFriendRequest(event) {
             const action = event.target.classList.contains('accept') ? 'accept' : 'decline';
             const friend_id = event.target.getAttribute('data-id');
@@ -182,11 +169,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
             })
             .then(response => response.json())
             .then(data => {
-                fetchUpdates(); // Refresh the lists after action
+                fetchUpdates(); 
             });
         }
 
-        // Add friend form submission
         document.getElementById('add-friend-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('add_friend_username').value;
@@ -205,14 +191,12 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
                 } else {
                     document.getElementById('add-status').textContent = 'Failed to send friend request.';
                 }
-                fetchUpdates(); // Refresh the lists after adding a friend
+                fetchUpdates(); 
             });
         });
 
-        // Poll the server every 5 seconds for updates
         setInterval(fetchUpdates, 5000);
 
-        // Initial fetch on page load
         fetchUpdates();
     </script>
     <a href="index.php">Return</a>

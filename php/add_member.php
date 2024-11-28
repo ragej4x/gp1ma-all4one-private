@@ -1,21 +1,18 @@
 <?php
-// Start the session if not already active
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'db.php'; // Include your database connection file
+include 'db.php'; 
 
-// Redirect to login if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
 
 $user_id = $_SESSION['user_id'];
-$group_id = $_GET['group_id']; // Get the group ID from the URL
+$group_id = $_GET['group_id']; 
 
-// Check if the user is the group creator or admin
 $stmt = $pdo->prepare("SELECT created_by FROM groups WHERE id = ?");
 $stmt->execute([$group_id]);
 $group = $stmt->fetch();
@@ -25,11 +22,9 @@ if ($group['created_by'] != $user_id) {
     exit;
 }
 
-// Handle the form submission to add a new member
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
     $username = $_POST['username'];
 
-    // Check if the user exists in the users table
     $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch();
@@ -37,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
     if ($user) {
         $new_user_id = $user['id'];
 
-        // Check if the user is already a member of the group
         $stmt = $pdo->prepare("SELECT * FROM group_members WHERE group_id = ? AND user_id = ?");
         $stmt->execute([$group_id, $new_user_id]);
         $is_member = $stmt->fetch();
@@ -62,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
 <head>
     <meta charset="UTF-8">
     <title>Add Member</title>
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
+
 </head>
 <body>
     <h1>Add Member to Group</h1>

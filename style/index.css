@@ -20,40 +20,36 @@ html {
     width: 100%;
     transition: all 0.5s ease; 
 
-    max-width: 1200px; /* Maximum width for larger screens */
-    margin: auto; /* Center the container */
+    margin: auto; 
 }
 
 .left, .middle, .right {
     display: flex;
     transition: flex 0.5s ease; 
     justify-content: center;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
 }
 
 .left {
-    flex: 0.3; 
+    flex: 0.2; 
     background-color: #394867;
 
 }
 
 .middle {
-    flex: 2;
+    flex: 2 ;
     background-color: #9BA4B5;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .right {
-    flex: 0.2; 
+    flex: 0.15; 
     background-color: #394867;
 
 }
 
-.container .left:hover ~ .middle,
-.container .right:hover ~ .middle {
-    flex: 1; 
-}
+
 
 .container .left:hover {
     flex: 0.5;   
@@ -76,13 +72,13 @@ h2, h3 {
     max-width: 90px;
     max-height: 90px;
     margin: 13px;
-    margin-left: -55px;
+    margin-left: -2.2%;
     background-color: black;
     border-radius: 50%;
     transition: 0.5s;
     opacity: 1;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .name {
@@ -97,16 +93,16 @@ h2, h3 {
 
 .container .left:hover .name {
     opacity: 1;
-    margin-right: 10px;
 }
 
 .container .left:hover .profile {
-    margin: 80px;
+    margin: 1px;
     margin-left: -80px;
     width: 15vw; 
     height: 15vw; 
     max-width: 150px; 
-    max-height: 150px; 
+    max-height: 150px;
+    margin-top: 100px;
 }
 
 .profile:hover {
@@ -149,8 +145,8 @@ h2 {
 
 .fb-page { 
 
-    width: 500px; 
-    height: 500px;
+    width: auto; 
+    height: auto;
     border: none; 
     overflow: hidden; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
@@ -167,9 +163,9 @@ h2 {
 
 }
 .icons{
-    margin-left: 40px;
-    width: 50px;
-    width: 50px;
+    margin-left: 25px;
+    width: 64px;
+    width: 64px;
 }
 
 #book, #group, #professor, #tasks, #files{
@@ -209,7 +205,7 @@ h2 {
 
 
 .container .right:hover #book, #group, #professor, #tasks, #files{
-    margin-right: 300px;
+    margin-right: 200px;
 }
 
 
