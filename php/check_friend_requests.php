@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 $user_id = $_SESSION['user_id'];
 
-// Fetch incoming friend requests
 $stmt = $pdo->prepare("SELECT sender_id, users.username FROM friends JOIN users ON users.id = friends.sender_id WHERE friends.receiver_id = ? AND friends.status = 'pending'");
 $stmt->execute([$user_id]);
 $incoming_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);

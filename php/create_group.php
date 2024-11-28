@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $group_name = $_POST['group_name'];
     $user_id = $_SESSION['user_id'];
     
-    // Handle group profile picture upload
     $profile_pic = null;
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
         $target_dir = "uploads/group_pics/";
@@ -21,14 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Insert new group
     $stmt = $pdo->prepare("INSERT INTO groups (name, created_by, profile_pic) VALUES (?, ?, ?)");
     $stmt->execute([$group_name, $user_id, $profile_pic]);
 
-    // Get the newly created group ID
     $group_id = $pdo->lastInsertId();
 
-    // Add the creator as the first member of the group
     $stmt = $pdo->prepare("INSERT INTO group_members (group_id, user_id) VALUES (?, ?)");
     $stmt->execute([$group_id, $user_id]);
 

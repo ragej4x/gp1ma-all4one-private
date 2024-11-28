@@ -20,6 +20,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style/index.css">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
+
 </head>
 <body>
 <div id="fb-root"></div>
@@ -30,7 +32,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <?php
             $profile_pic = !empty($user['profile_pic']) && file_exists("php/uploads/" . $user['profile_pic']) 
                            ? "php/uploads/" . htmlspecialchars($user['profile_pic']) 
-                           : "php/uploads/default-profile.png"; // Fallback image
+                           : "php/uploads/default-profile.png";
 
             echo "<a href='php/profile.php'><img class='profile' src='$profile_pic' alt='Profile Picture'></a>";
             ?>
@@ -47,8 +49,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                      data-small-header="true" 
                      data-adapt-container-width="false" 
                      data-hide-cover="false" 
-                     data-width="500px"
-                     data-height="500px"
+                     data-width="1000px"
+                     data-height="800px"
                      data-show-facepile="true">
                     <blockquote cite="https://www.facebook.com/JonvicRemullaJr" class="fb-xfbml-parse-ignore">
                         <a href="https://www.facebook.com/JonvicRemullaJr">Jonvic Remulla</a>
@@ -61,8 +63,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div class="fb-page" 
                      data-href="https://www.facebook.com/thephoenixadvisory" 
                      data-tabs="timeline"
-                     data-width="500px"
-                     data-height="500px"
+                     data-width="1000px"
+                     data-height="800px"
                      data-small-header="true" 
                      data-adapt-container-width="false" 
                      data-hide-cover="false" 
@@ -85,7 +87,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     <div class="professor-cont" ><a href= "php/index.php"><img class="icons"id="professor" src="icons/professor.png" alt="Error Unable to load asset"><br><h3 id="c3" class="ico-text">Teachers</h3></a></div>
 
-                    <div class="tasks-cont"><img class="icons" id="tasks" src="icons/tasks.png" alt="Error Unable to load asset"><br><h3 id="d4" class="ico-text">Assignment</h3></div>
+                    <div class="tasks-cont"><a href="php/view_assignment.php"><img class="icons" id="tasks" src="icons/tasks.png" alt="Error Unable to load asset"><br><h3 id="d4" class="ico-text">Assignment</h3></div>
                     <div class="files-cont" ><a href="php/cloud-flm.php"> <img class="icons" id="files" src="icons/folder.png" alt="Error Unable to load asset"><br><h3 id="e5" class="ico-text">My Files</h3></a></div>
                     
                       

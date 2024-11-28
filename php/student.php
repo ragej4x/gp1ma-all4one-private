@@ -1,8 +1,6 @@
 <?php
-// Include database connection
 include '../php/db.php';
 
-// Fetch assignments and modules for student view
 $assignments = $pdo->query("SELECT * FROM assignments")->fetchAll(PDO::FETCH_ASSOC);
 $modules = $pdo->query("SELECT * FROM modules")->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -14,6 +12,8 @@ $modules = $pdo->query("SELECT * FROM modules")->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,7 +81,6 @@ $modules = $pdo->query("SELECT * FROM modules")->fetchAll(PDO::FETCH_ASSOC);
                 <h3><?php echo htmlspecialchars($assignment['title']); ?></h3>
                 <p><?php echo htmlspecialchars($assignment['description']); ?></p>
                 <p>Deadline: <?php 
-                    // Format the deadline date and time
                     $formattedDeadline = date("F j, Y, g:i a", strtotime($assignment['deadline']));
                     echo htmlspecialchars($formattedDeadline); 
                 ?></p>
@@ -104,7 +103,6 @@ $modules = $pdo->query("SELECT * FROM modules")->fetchAll(PDO::FETCH_ASSOC);
                 <h3><?php echo htmlspecialchars($module['title']); ?></h3>
                 <p><?php echo htmlspecialchars($module['description']); ?></p>
                 <p>Date: <?php 
-                    // Format the module date
                     $formattedDate = date("F j, Y", strtotime($module['date']));
                     echo htmlspecialchars($formattedDate); 
                 ?></p>

@@ -6,7 +6,7 @@ function loadFriends() {
         .then(response => response.text())
         .then(text => {
 
-            console.log('Raw response for friends:', text); 
+            console.log('respo:', text); 
 
             const data = JSON.parse(text); 
 

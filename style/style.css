@@ -1,19 +1,19 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden; /* Prevents scrolling */
+    overflow: hidden; 
 }
 .container {
     height: 100vh;
-    position: fixed; /* Keep the container fixed in position */
-    top: 50%; /* Center vertically */
-    right: 0; /* Align to the right */
+    position: fixed;
+    top: 50%; 
+    right: 0; 
     width: 100%;
     height: 100vh;
-    transform: translateY(-50%); /* Adjust position to center vertically */
+    transform: translateY(-50%); 
 
-    color: white; /* White text color */
-    transition: transform 0.1s ease; /* Smooth scaling */
+    color: white; 
+    transition: transform 0.1s ease; 
 
 }
 

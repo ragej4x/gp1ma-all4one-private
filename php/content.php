@@ -1,7 +1,7 @@
 <h2>Private Chat with <?php echo htmlspecialchars($chat_user['username']); ?></h2>
 
 <div id="chat-box" class="chat-box">
-    <!-- Messages will be dynamically loaded here -->
+    <!-- dynamic load dto -->
 </div>
 
 <form id="message-form">
@@ -43,7 +43,6 @@
         });
     }
 
-    // Send a message
     document.getElementById('message-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const messageInput = document.getElementById('message-input').value;
@@ -65,7 +64,7 @@
         });
     });
 
-    // Polling the server every 3 seconds for new messages
+    // pool ng msg every 3 sec
     setInterval(fetchMessages, 3000);
     fetchMessages(); // Initial load
 </script>

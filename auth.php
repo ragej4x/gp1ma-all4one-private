@@ -57,10 +57,16 @@ if (isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=5.0">
     <title>GP1MA</title>
     <link rel="stylesheet" href="style/auth-style.css">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.png">
 </head>
 
 <body>
+<div class="logo" style=" position:absolute; background-color:#F1F6F9; height:100vh; width:50%;" ><img style="width:600px; height:600px; margin-left:15%; margin-top:10%;" id="logo" src="icons/logo.png" alt="logo">
+
+
+</div>
 <div class="container">
+
     <section class="forms-section">
         <h1 class="section-title"></h1>
         <div class="forms">
@@ -149,7 +155,6 @@ function removeClassOnMobile() {
         }
     }
 }
-
 window.addEventListener('load', removeClassOnMobile);
 window.addEventListener('resize', removeClassOnMobile);
 </script>
