@@ -152,3 +152,42 @@ CREATE TABLE modules (
 
 ALTER TABLE modules ADD COLUMN subject VARCHAR(255) NOT NULL;
 ALTER TABLE assignments ADD COLUMN subject VARCHAR(255) NOT NULL;
+
+
+
+
+CREATE TABLE users (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    profile_pic VARCHAR(255) DEFAULT NULL,
+    bio TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    profile_picture VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE client_msg (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    sender_id INT NOT NULL, -- ID of the sender (user or teacher)
+    sender_type ENUM('user', 'teacher') NOT NULL, -- To differentiate sender type
+    receiver_id INT NOT NULL, -- ID of the receiver (user or teacher)
+    receiver_type ENUM('user', 'teacher') NOT NULL, -- To differentiate receiver type
+    message TEXT NOT NULL, -- The message content
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the message is sent
+    
+    -- Foreign Key Constraints
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE, -- Link to users table
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE -- Link to users table for now
+);

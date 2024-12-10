@@ -3,7 +3,7 @@ include '../php/db.php';
 session_start();
 
 if (!isset($_SESSION['teacher_id'])) {
-    header('Location: login.php');
+    header('Location: auth.php');
     exit;
 }
 
@@ -66,7 +66,7 @@ $teacher = $pdo->query("SELECT * FROM teachers WHERE id = $teacherId")->fetch(PD
 
 <div class="container">
     <div class="profile-info">
-        <img src="uploads/profile_pics/<?php echo $teacher['profile_picture']; ?>" alt="Profile Picture" class="profile-pic">
+        <img src="profile_picture/<?php echo $teacher['profile_picture']; ?>" alt="Profile Picture" class="profile-pic">
         <div>
             <h1>Welcome, <?php echo $teacher['first_name'] . ' ' . $teacher['last_name']; ?>!</h1>
             <p>Email: <?php echo $teacher['email']; ?></p>

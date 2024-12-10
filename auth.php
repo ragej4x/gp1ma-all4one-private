@@ -21,6 +21,11 @@ if (isset($_POST['register'])) {
     if ($stmt->execute([$first_name, $last_name, $username, $email, $password])) {
         $_SESSION['user_id'] = $pdo->lastInsertId();
         $_SESSION['username'] = $username;
+        $_SESSION['id'] = $user_id; // Set the user's ID
+        $_SESSION['role'] = 'user'; 
+
+
+        
         header('Location: index.php');
         exit;
     } else {
@@ -32,6 +37,7 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,6 +46,8 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['id'] = $user_id;
+            $_SESSION['role'] = 'user'; 
             header('Location: index.php');
             exit;
         } else {

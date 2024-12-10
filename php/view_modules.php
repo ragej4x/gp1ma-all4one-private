@@ -56,7 +56,7 @@ if ($selectedSubject) {
             background-color: #212A3E;
         }
         .content {
-            margin-left: 260px;
+            margin-left: 360px;
             padding: 20px;
             flex-grow: 1;
         }
@@ -89,6 +89,7 @@ if ($selectedSubject) {
     <?php foreach ($subjects as $subject): ?>
         <a href="?subject=<?php echo urlencode($subject['subject']); ?>"><?php echo htmlspecialchars($subject['subject']); ?></a>
     <?php endforeach; ?>
+    <div class="nav" style="position:absolute; margin-bottom: 30px; bottom:0;"><a href="../index.php">Return</a></div>
 </div>
 
 <div class="content">

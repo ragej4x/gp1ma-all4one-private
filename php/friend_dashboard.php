@@ -85,35 +85,134 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
     <meta charset="UTF-8">
     <title>Friend Dashboard</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F1F6F9;
+            color: #212A3E;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #394867;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
         .friend-list, .user-list {
             max-height: 300px;
             overflow-y: auto;
-            border: 1px solid #ccc;
+            border: 1px solid #9BA4B5;
+            border-radius: 8px;
             padding: 10px;
-            margin-bottom: 20px;
+            background-color: #F1F6F9;
         }
+
         .friend-list li, .user-list li {
             margin-bottom: 10px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .friend-list li:last-child, .user-list li:last-child {
+            border-bottom: none;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #9BA4B5;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #394867;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #212A3E;
+        }
+
+        #add-status {
+            margin-top: 10px;
+            color: #394867;
+        }
+
+        a {
+            text-decoration: none;
+            color: #394867;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        a:hover {
+            color: #212A3E;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons button {
+            flex: 1;
         }
     </style>
 </head>
 <body>
-    <h2>Your Friends</h2>
-    <div id="friend-list" class="friend-list">
-        <ul></ul>
-    </div>
-
+    <div class="container">
     <h2>Add Friend by Username</h2>
-    <form id="add-friend-form">
-        <input type="text" id="add_friend_username" name="add_friend_username" placeholder="Enter username" required>
-        <button type="submit">Add Friend</button>
-    </form>
-    <p id="add-status"></p>
+        <form id="add-friend-form" class="input-group">
+            <input type="text" id="add_friend_username" name="add_friend_username" placeholder="Enter username" required>
+            <button type="submit">Add Friend</button>
+        </form>
+        <p id="add-status"></p>
+        
+        <h2>Your Friends</h2>
+        <div id="friend-list" class="friend-list">
+            <ul></ul>
+        </div>
 
-    <h2>Pending Friend Requests</h2>
-    <div id="pending-requests" class="friend-list">
-        <ul></ul>
+
+
+        <h2>Pending Friend Requests</h2>
+        <div id="pending-requests" class="friend-list">
+            <ul></ul>
+        </div>
     </div>
+
+    <a href="index.php">Return</a>
 
     <script>
         function fetchUpdates() {
@@ -142,8 +241,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
                     data.incoming_requests.forEach(request => {
                         pendingList.innerHTML += `
                             <li>${request.username}
-                                <button class="accept" data-id="${request.sender_id}">Accept</button>
-                                <button class="decline" data-id="${request.sender_id}">Decline</button>
+                                <div class="action-buttons">
+                                    <button class="accept" data-id="${request.sender_id}">Accept</button>
+                                    <button class="decline" data-id="${request.sender_id}">Decline</button>
+                                </div>
                             </li>`;
                     });
                 } else {
@@ -199,6 +300,5 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch_updates') {
 
         fetchUpdates();
     </script>
-    <a href="index.php">Return</a>
 </body>
 </html>

@@ -81,7 +81,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="selections">
                 <div class="ico-label">
 
-                    <div class="book-cont" ><img class="icons" id="book" src="icons/book.png" alt="Error Unable to load asset"><h3 id="a1"  class="ico-text" >Lessons</h3></div>
+                    <div class="book-cont" ><a href= "php/view_modules.php"> <img class="icons" id="book" src="icons/book.png" alt="Error Unable to load asset"><h3 id="a1"  class="ico-text" >Lessons</h3></a></div>
 
                     <div class="group-cont"><a href= "php/index.php"> <img class="icons" id="group" src="icons/group.png" alt="Error Unable to load asset"> <h3 id="b2" class="ico-text">Chats</h3></a></div>
 

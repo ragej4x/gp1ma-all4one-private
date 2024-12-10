@@ -15,6 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
     if ($teacher && password_verify($password, $teacher['password'])) {
         $_SESSION['teacher_id'] = $teacher['id'];
+        $_SESSION['role'] = 'teacher';
+        // After successful login
+        $_SESSION['id'] = $teacher['id'];  // $teacher['id'] should be the teacher's ID from the database
+
         $_SESSION['teacher_name'] = $teacher['first_name'] . ' ' . $teacher['last_name'];
         header('Location: index.php');
         exit;

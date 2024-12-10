@@ -72,7 +72,7 @@ h2, h3 {
     max-width: 90px;
     max-height: 90px;
     margin: 13px;
-    margin-left: -2.2%;
+    margin-left: -2.7%;
     background-color: black;
     border-radius: 50%;
     transition: 0.5s;
@@ -97,7 +97,7 @@ h2, h3 {
 
 .container .left:hover .profile {
     margin: 1px;
-    margin-left: -80px;
+    margin-left: -4.6%;
     width: 15vw; 
     height: 15vw; 
     max-width: 150px; 
@@ -163,8 +163,7 @@ h2 {
 
 }
 .icons{
-    margin-left: 25px;
-    width: 64px;
+    margin-left: 15px;
     width: 64px;
 }
 
