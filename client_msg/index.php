@@ -1,48 +1,41 @@
 <?php
 session_start();
-include '../php/db.php'; // Include your database connection file
+include '../php/db.php'; 
 
-// Check if student is logged in
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'user') {
     die("Unauthorized");
 }
 
-$student_id = $_SESSION['id']; // Get student ID from session
+$student_id = $_SESSION['id']; 
 
-// Fetch all teachers for the student
 $stmt = $pdo->prepare("SELECT * FROM teachers");
 $stmt->execute();
 $teachers = $stmt->fetchAll();
 
-// Handle message loading and sending via AJAX
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 
     if ($action == 'load_messages' && isset($_GET['teacher_id'])) {
         $teacher_id = $_GET['teacher_id'];
 
-        // Fetch messages between student and selected teacher
         $stmt = $pdo->prepare("SELECT * FROM client_msg 
             WHERE (sender_id = :student_id AND receiver_id = :teacher_id AND sender_type = 'user' AND receiver_type = 'teacher') 
             OR (sender_id = :teacher_id AND receiver_id = :student_id AND sender_type = 'teacher' AND receiver_type = 'user') 
             ORDER BY created_at ASC");
         
-        // Bind the parameters to the statement
         $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
         $stmt->bindParam(':teacher_id', $teacher_id, PDO::PARAM_INT);
     
-        // Execute the query
         $stmt->execute();
     
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        // Debugging: Log or output messages to check if it's being fetched correctly
-        error_log(print_r($messages, true)); // This will log the messages to the PHP error log
+        error_log(print_r($messages, true)); 
     
         if ($messages) {
             echo json_encode(['status' => 'success', 'messages' => $messages]);
         } else {
-            echo json_encode(['status' => 'success', 'messages' => []]); // Ensure empty array if no messages
+            echo json_encode(['status' => 'success', 'messages' => []]); 
         }
         exit;
     } elseif ($action == 'send_message') {
@@ -73,7 +66,6 @@ if (isset($_GET['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <style>
-        /* Sidebar Style */
         #sidebar {
             width: 250px;
             float: left;
@@ -89,7 +81,6 @@ if (isset($_GET['action'])) {
         .teacher-info:hover {
             background-color: #d1d1d1;
         }
-        /* Chat Area */
         #chat-box {
             margin-left: 270px;
             padding: 20px;
@@ -121,7 +112,6 @@ if (isset($_GET['action'])) {
     <div id="chat-box">
         <h3>Chat with your teacher</h3>
         <div id="messages">
-            <!-- Messages will be dynamically loaded here -->
         </div>
 
         <form id="message-form" style="display: none;">
@@ -135,18 +125,14 @@ if (isset($_GET['action'])) {
     </div>
 
     <script>
-        // Initialize variables
         const messagesDiv = document.getElementById('messages');
         const messageForm = document.getElementById('message-form');
         const senderIdInput = document.getElementById('sender_id');
         const receiverIdInput = document.getElementById('receiver_id');
         
-        // Function to load messages dynamically for a selected teacher
         function loadMessages(teacher_id) {
-            // Set the selected teacher's ID to the receiver field
             receiverIdInput.value = teacher_id;
             
-            // Show the message form
             messageForm.style.display = 'block';
 
             const xhr = new XMLHttpRequest();
@@ -154,7 +140,7 @@ if (isset($_GET['action'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
-                    messagesDiv.innerHTML = ''; // Clear previous messages
+                    messagesDiv.innerHTML = ''; 
 
                     if (data.status === 'success') {
                         if (data.messages && data.messages.length > 0) {
@@ -167,7 +153,6 @@ if (isset($_GET['action'])) {
                         } else {
                             messagesDiv.innerHTML = '<div>No messages yet.</div>';
                         }
-                        // Scroll to the bottom
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
                     } else {
                         console.error("Error loading messages:", data.message);
@@ -178,7 +163,6 @@ if (isset($_GET['action'])) {
             xhr.send();
         }
 
-        // Send message via AJAX
         messageForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -191,8 +175,8 @@ if (isset($_GET['action'])) {
                     const data = JSON.parse(xhr.responseText);
                     if (data.status === 'success') {
                         const teacher_id = receiverIdInput.value;
-                        loadMessages(teacher_id); // Reload messages after sending
-                        messageForm.reset(); // Clear message input
+                        loadMessages(teacher_id); 
+                        messageForm.reset(); 
                     } else {
                         alert('Error sending message');
                     }
