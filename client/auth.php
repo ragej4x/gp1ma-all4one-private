@@ -1,14 +1,11 @@
 <?php
-// Include database connection
 include '../php/db.php';
 session_start();
 
-// Handle login
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Query to find the teacher
     $stmt = $pdo->prepare("SELECT * FROM teachers WHERE email = ?");
     $stmt->execute([$email]);
     $teacher = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -16,8 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     if ($teacher && password_verify($password, $teacher['password'])) {
         $_SESSION['teacher_id'] = $teacher['id'];
         $_SESSION['role'] = 'teacher';
-        // After successful login
-        $_SESSION['id'] = $teacher['id'];  // $teacher['id'] should be the teacher's ID from the database
+        $_SESSION['id'] = $teacher['id']; 
 
         $_SESSION['teacher_name'] = $teacher['first_name'] . ' ' . $teacher['last_name'];
         header('Location: index.php');
@@ -27,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     }
 }
 
-// Handle registration
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
@@ -57,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Portal Login</title>
     <style>
-        /* Color Scheme */
         :root {
             --light-bg: #F1F6F9;
             --primary: #394867;
@@ -65,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             --accent: #9BA4B5;
         }
 
-        /* Global Styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -146,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 <div class="form-container">
     <h1>Teacher Portal</h1>
 
-    <!-- Login Form -->
     <h2>Login</h2>
     <form method="POST">
         <input type="email" name="email" placeholder="Email" required />
@@ -156,7 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
     <div class="separator">or</div>
 
-    <!-- Registration Form -->
     <h2>Register</h2>
     <form method="POST">
         <input type="text" name="first_name" placeholder="First Name" required />
