@@ -1,21 +1,17 @@
 <?php
 session_start();
-require '../../php/db.php'; // Include your database connection file
+require '../../php/db.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['id']) || !isset($_SESSION['role'])) {
     die(json_encode(['error' => 'Not authenticated']));
 }
 
-// Get the session user ID and role
 $current_id = $_SESSION['id'];
-$current_role = $_SESSION['role']; // 'user' or 'teacher'
+$current_role = $_SESSION['role'];
 
-// Get the partner's ID and role from GET data
 $partner_id = $_GET['partner_id'];
-$partner_role = $_GET['partner_role']; // 'user' or 'teacher'
+$partner_role = $_GET['partner_role'];
 
-// Retrieve messages from the database
 $stmt = $pdo->prepare("
     SELECT * FROM messages 
     WHERE 
