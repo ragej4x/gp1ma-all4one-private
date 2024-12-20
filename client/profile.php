@@ -1,19 +1,15 @@
 <?php
-// Include database connection
 include '../php/db.php';
 session_start();
 
-// Redirect to login if not logged in
 if (!isset($_SESSION['teacher_id'])) {
     header('Location: auth.php');
     exit;
 }
 
-// Fetch profile information
 $teacherId = $_SESSION['teacher_id'];
 $teacher = $pdo->query("SELECT * FROM teachers WHERE id = $teacherId")->fetch(PDO::FETCH_ASSOC);
 
-// Handle profile update
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit_profile') {
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
@@ -22,25 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $confirmPassword = $_POST['confirm_password'];
     $profilePicture = $_FILES['profile_picture']['name'];
 
-    // Validate password confirmation
     if ($password && $password !== $confirmPassword) {
         echo "<script>alert('Passwords do not match.');</script>";
     } else {
-        // Process password update only if a new password is provided
         $hashedPassword = $password ? password_hash($password, PASSWORD_BCRYPT) : $teacher['password'];
 
-        // Process profile picture upload if a new picture is provided
         if ($profilePicture) {
             $targetDir = "profile_picture/";
             $targetFile = $targetDir . basename($profilePicture);
 
-            // Check if the file already exists
             if (file_exists($targetFile)) {
                 echo "<script>alert('A file with the same name already exists. Please rename your file and try again.');</script>";
             } else {
-                // Attempt to move uploaded file
                 if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile)) {
-                    $profilePicturePath = basename($profilePicture); // Save the original filename
+                    $profilePicturePath = basename($profilePicture);
                 } else {
                     echo "<script>alert('Failed to upload profile picture.');</script>";
                     $profilePicturePath = $teacher['profile_picture'];
@@ -50,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
             $profilePicturePath = $teacher['profile_picture'];
         }
 
-        // Update the database
         $stmt = $pdo->prepare("UPDATE teachers SET first_name = ?, last_name = ?, email = ?, password = ?, profile_picture = ? WHERE id = ?");
         $stmt->execute([$firstName, $lastName, $email, $hashedPassword, $profilePicturePath, $teacherId]);
 
