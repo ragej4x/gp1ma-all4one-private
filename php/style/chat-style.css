@@ -1,86 +1,81 @@
-/* General Reset and Body Styles */
 html, body {
     margin: 0;
     height: 100%;
-    overflow: hidden; /* Prevents scrolling */
+    overflow: hidden;
     font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-    background: #3b4465; /* Background color */
+    background: #3b4465; 
 }
 
-/* Container for Sidebar and Content */
 .container {
     position: fixed; 
-    top: 50%; /* Center vertically */
+    top: 50%; 
     right: 0; 
     width: auto; 
     max-width: 700px; 
-    transform: translateY(-50%); /* Adjust to center */
+    transform: translateY(-50%); 
     color: white; 
     transition: transform 0.1s ease; 
-    display: flex; /* Use flex to align sidebar and content */
+    display: flex; 
 }
 
-/* Sidebar Styles */
 .sidebar {
-    background: #4a5577; /* Background color for sidebar */
-    width: 250px; /* Fixed width for sidebar */
-    padding: 20px; /* Add padding */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); /* Shadow effect for depth */
+    background: #4a5577; 
+    width: 250px; 
+    padding: 20px; 
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); 
 }
 
-/* Tab Button Styles */
 .button-container {
-    display: flex; /* Arrange buttons horizontally */
-    flex-direction: column; /* Arrange buttons in a column */
-    margin-bottom: 20px; /* Space below buttons */
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 20px; 
 }
 
 .tab {
-    padding: 10px; /* Padding for better click area */
-    background: #575d7a; /* Tab background color */
-    cursor: pointer; /* Pointer on hover */
-    text-align: center; /* Center text */
-    border-radius: 5px; /* Rounded corners */
-    margin-bottom: 5px; /* Space between tabs */
-    transition: background 0.3s; /* Smooth background change */
+    padding: 10px; 
+    background: #575d7a; 
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px; 
+    margin-bottom: 5px; 
+    transition: background 0.3s;
 }
 
 .tab:hover {
-    background: #4e546c; /* Darker background on hover */
+    background: #4e546c;
 }
 
 .tab.active {
-    background: #3e4455; /* Active tab color */
+    background: #3e4455;
 }
 
-/* Chat List Styles */
 .chat-list {
-    display: none; /* Hide by default */
-    background: #4a5577; /* Background color for chat lists */
-    padding: 15px; /* Padding for chat lists */
-    border-radius: 5px; /* Rounded corners */
+    display: none; 
+    background: #4a5577; 
+    padding: 15px; 
+    border-radius: 5px;
 }
 
 .chat-list ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
+    list-style-type: none; 
+    padding: 0; 
 }
 
 .chat-list li {
-    margin-bottom: 10px; /* Space between friends/groups */
-    display: flex; /* Flexbox for image and text alignment */
-    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; 
+    display: flex; 
+    align-items: center;
 }
 
 .chat-list img {
-    width: 40px; /* Fixed size for profile/group pictures */
-    height: 40px; /* Fixed size for profile/group pictures */
-    border-radius: 50%; /* Circular images */
-    margin-right: 10px; /* Space between image and text */
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px;
 }
 
-/* Content Area Styles */
+
 .content {
-    flex-grow: 1; /* Allow content area to expand */
-    padding: 20px; /* Padding for content area */
+    flex-grow: 1; 
+    padding: 20px; 
 }

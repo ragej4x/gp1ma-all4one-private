@@ -8,10 +8,14 @@ flex-direction: column;
 align-items: center;
 padding: 20px;
 }
+
+
 h1, h2 {
+
 color: #212A3E;
 }
 .container {
+
 width: 80%;
 max-width: 800px;
 background-color: #ffffff;
@@ -20,11 +24,16 @@ border-radius: 10px;
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 margin-bottom: 20px;
 }
+
+
 form {
+
 display: flex;
 flex-direction: column;
 gap: 15px;
 }
+
+
 input, textarea, select, button {
 padding: 10px;
 font-size: 16px;
@@ -32,7 +41,11 @@ border: 1px solid #9BA4B5;
 border-radius: 5px;
 box-sizing: border-box;
 }
+
+
+
 button {
+
 background-color: #394867;
 color: #F1F6F9;
 border: none;
@@ -40,16 +53,22 @@ cursor: pointer;
 padding: 12px;
 font-weight: bold;
 transition: background-color 0.3s;
+
 }
+
+
 button:hover {
 background-color: #212A3E;
 }
+
 .profile-info {
 display: flex;
 align-items: center;
 gap: 15px;
 margin-bottom: 20px;
 }
+
+
 .profile-pic {
 width: 60px;
 height: 60px;
@@ -57,6 +76,7 @@ border-radius: 50%;
 object-fit: cover;
 border: 2px solid #9BA4B5;
 }
+
 .logout-btn {
 background-color: #394867;
 color: #F1F6F9;
@@ -67,13 +87,16 @@ cursor: pointer;
 margin-top: 10px;
 align-self: flex-start;
 }
+
 .logout-btn:hover {
 background-color: #212A3E;
 }
+
 .select-time {
 display: flex;
 gap: 10px;
 }
+
 select {
 width: auto;
 padding: 8px;

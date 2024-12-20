@@ -16,6 +16,9 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
+
+
+
 .profile-panel {
     background-color: #394867;
     color: #F1F6F9;
@@ -50,6 +53,9 @@ body {
 .profile-panel button:hover {
     background-color: #9BA4B5;
 }
+
+
+
 main {
     padding: 20px;
     flex-grow: 1;

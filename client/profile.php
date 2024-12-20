@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                 echo "<script>alert('A file with the same name already exists. Please rename your file and try again.');</script>";
             } else {
                 if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile)) {
-                    $profilePicturePath = basename($profilePicture);
+                    $profilePicturePath = basename($profilePicture); 
                 } else {
                     echo "<script>alert('Failed to upload profile picture.');</script>";
                     $profilePicturePath = $teacher['profile_picture'];

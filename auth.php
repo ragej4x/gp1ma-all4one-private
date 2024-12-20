@@ -21,8 +21,6 @@ if (isset($_POST['register'])) {
     if ($stmt->execute([$first_name, $last_name, $username, $email, $password])) {
         $_SESSION['user_id'] = $pdo->lastInsertId();
         $_SESSION['username'] = $username;
-        $_SESSION['id'] = $user_id; // Set the user's ID
-        $_SESSION['role'] = 'user'; 
 
 
         
@@ -46,8 +44,10 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['id'] = $user_id;
-            $_SESSION['role'] = 'user'; 
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = 'student';  // Role can be 'student' or 'teacher'
+    
+    
             header('Location: index.php');
             exit;
         } else {

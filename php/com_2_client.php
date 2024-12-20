@@ -22,7 +22,7 @@ if ($_SESSION['role'] != 'user') {
 
     <script>
         const userId = <?php echo $_SESSION['id']; ?>;
-        const teacherId = 1; // Replace with the selected teacher ID
+        const teacherId = 1;
         const chatBox = document.getElementById('chat-box');
         const chatForm = document.getElementById('chat-form');
         const messageInput = document.getElementById('message');
@@ -52,7 +52,7 @@ if ($_SESSION['role'] != 'user') {
             });
         });
 
-        setInterval(fetchMessages, 1000); // Fetch messages every second
+        setInterval(fetchMessages, 1000);
     </script>
 </body>
 </html>

@@ -17,7 +17,7 @@ body {
     max-width: 100%;
     display: flex;
     padding: 20px;
-    overflow: hidden; /* Prevents scrolling */
+    overflow: hidden;
 }
 
 .left-panel {
@@ -26,11 +26,11 @@ body {
     flex-direction: column;
     align-items: center;
     margin-right: 20px;
-    background-color: #394867; /* Left panel color */
+    background-color: #394867; 
     border-radius: 10px;
     padding: 20px;
-    color: #F1F6F9; /* Text color */
- /* Space out children, pushing button to bottom */
+    color: #F1F6F9; 
+
 }
 
 .profile-pic {
@@ -54,7 +54,7 @@ body {
 
 h2 {
     margin: 10px 0;
-    color: #F1F6F9; /* Text color */
+    color: #F1F6F9; 
     text-align: center;
 }
 
@@ -68,13 +68,13 @@ h2 {
 .button-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center buttons */
+    align-items: center;
     margin-top: 100%;
-    justify-content: space-between; /* Space out children, pushing button to bottom */
+    justify-content: space-between; 
 }
 
 a {
-    color: #F1F6F9; /* Text color */
+    color: #F1F6F9; 
     text-decoration: none;
     margin: 5px 0;
     font-size: 14px;
@@ -82,7 +82,7 @@ a {
 }
 
 a:hover {
-    color: #cbd3da; /* Lighter shade for hover effect */
+    color: #cbd3da; 
 }
 
 .right-panel {
@@ -118,39 +118,39 @@ textarea {
 .file-upload-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Align items on either side */
+    justify-content: space-between; 
     width: 100%;
-    margin-top: 10px; /* Add space above the file upload */
+    margin-top: 10px; 
 }
 
 .file-input {
     color: #F1F6F9;
-    display: none; /* Hide the default file input */
+    display: none; 
 }
 
 .file-button {
-    background-color: #394867; /* Button background color */
+    background-color: #394867;
     color: #ffffff;
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 14px; /* Adjust font size */
+    font-size: 14px; 
     transition: background-color 0.3s ease;
-    height: 40px; /* Set a consistent height */
-    width: 150px; /* Set fixed width */
-    text-align: center; /* Center text */
+    height: 40px; 
+    width: 150px; 
+    text-align: center; 
 }
 
 .file-button:hover {
-    background-color: #2e343f; /* Darker shade for hover effect */
+    background-color: #2e343f; 
 }
 
 .button-group {
     display: flex;
-    justify-content: center; /* Center the button group */
+    justify-content: center;
     width: 100%;
-    margin-top: 10px; /* Add space above the buttons */
+    margin-top: 10px; 
 }
 
 .update-button {
@@ -159,16 +159,16 @@ textarea {
     color: #F1F6F9;
     border: none;
     border-radius: 5px;
-    padding: 10px 15px; /* Ensure padding is the same as file button */
+    padding: 10px 15px; 
     cursor: pointer;
-    font-size: 14px; /* Ensure font size matches file button */
+    font-size: 14px; 
     transition: background-color 0.3s ease;
-    height: 40px; /* Set a consistent height */
-    width: 150px; /* Set the same fixed width */
+    height: 40px; 
+    width: 150px; 
 }
 
 .update-button:hover {
-    background-color: #394867; /* Darker shade for hover effect */
+    background-color: #394867;
 }
 
 @media (max-width: 768px) {
@@ -176,7 +176,7 @@ textarea {
         flex-direction: column;
         width: 100%;
         padding: 15px;
-        overflow: hidden; /* Prevents scrolling on mobile */
+        overflow: hidden;
     }
 
     .left-panel {

@@ -19,8 +19,8 @@ function showChat(chatType) {
         document.getElementById('chat-header').innerText = 'Select a group to chat with!';
     }
 
-    document.getElementById('chat-box').innerHTML = ''; // Clear chat box
-    currentChatId = null; // Reset chat ID
+    document.getElementById('chat-box').innerHTML = ''; 
+    currentChatId = null; 
 }
 
 function startChat(userId, username) {

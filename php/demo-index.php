@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-//check friend
 $stmt = $pdo->prepare("
     SELECT u.id, u.username, u.profile_pic
     FROM users u
@@ -33,7 +32,6 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
 
-    // Handle private chat message sending wag din iseparate
     if ($action === 'send_message' && isset($_POST['user_id'])) {
         $receiver_id = $_POST['user_id'];
         $message = $_POST['message'];
@@ -47,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         exit;
     }
 
-    // Handle group chat message sending /// wag iseparate
     if ($action === 'send_group_message' && isset($_POST['group_id'])) {
         $group_id = $_POST['group_id'];
         $message = $_POST['message'];

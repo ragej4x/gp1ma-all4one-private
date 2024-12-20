@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare("INSERT INTO group_members (group_id, user_id) VALUES (?, ?)");
     $stmt->execute([$group_id, $user_id]);
 
-    header("Location: group.php?group_id=$group_id");
+    header("Location: index.php");
     exit;
 }
 ?>
@@ -38,21 +38,89 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Create Group</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Create a New Group</h1>
+    <div class="container">
+        <div class="form-container">
+            <h1>Create a New Group</h1>
+            <form method="POST" action="" enctype="multipart/form-data">
+                <label for="group_name">Group Name: </label>
+                <input type="text" id="group_name" name="group_name" required placeholder="Enter group name"><br><br>
 
-    <form method="POST" action="" enctype="multipart/form-data">
-        <label>Group Name: </label><br>
-        <input type="text" name="group_name" required><br><br>
+                <label for="profile_pic">Group Profile Picture: </label>
+                <input type="file" id="profile_pic" name="profile_pic" accept="image/*"><br><br>
 
-        <label>Group Profile Picture: </label><br>
-        <input type="file" name="profile_pic" accept="image/*"><br><br>
-
-        <button type="submit">Create Group</button>
-    </form>
-
-    <br>
-    <a href="index.php">Back to Chat</a>
+                <button type="submit" class="btn-submit">Create Group</button>
+            </form>
+            <br>
+            <a href="index.php" class="btn-back">Back to Chat</a>
+        </div>
+    </div>
 </body>
 </html>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fc;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f6f9;
+    }
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 400px;
+        width: 100%;
+    }
+    .form-container h1 {
+        font-size: 24px;
+        color: #394867;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        font-size: 14px;
+        color: #394867;
+        font-weight: 600;
+    }
+    input[type="text"], input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #9ba4b5;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        background-color: #f1f6f9;
+    }
+    button, .btn-back {
+        padding: 10px 20px;
+        background-color: #394867;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    button:hover, .btn-back:hover {
+        background-color: #2c3e50;
+    }
+    .btn-back {
+        background-color: #9ba4b5;
+        text-align: center;
+        max-width: 90%;
+    }
+</style>

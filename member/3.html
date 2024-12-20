@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /*=============BUONG BODY BACKGROUND===============*/
+            background-color: #f4f4f4;
+            /*============================*/
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .profile-card {
+            /* !!! PROFILE ETO UNG STYLE NG PROFILE CARD MO !!*/
+            background: white;
+            /*===========KULAY NG PROFILE CARD MO=================*/
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .banner {
+            /* !!! COLOR NG BANNER UNG SA 
+            TAAS NA BLUE FEEL FREE TO CHANGE THE COLOR !!*/
+            background-color: #007BFF;
+            /*============================*/
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*============================*/
+            color: white;
+            /*============================*/
+            font-size: 1.5rem;
+        }
+
+        .side-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .picture {
+
+            /* PALITAN MO UNG URL NG IMAGE FILE MO */
+            background-image: url('https://scontent.fmnl8-2.fna.fbcdn.net/v/t39.30808-1/452074806_516073360756929_3767415217417490678_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-7&_nc_sid=50d2ac&_nc_eui2=AeFdkU2fW6EDTfLVrUMdqBdFuqNJ52PIWa-6o0nnY8hZr17-u153j4_X81Xkt_JWvY0TJvtoILFGgx7gW_4RDwkK&_nc_ohc=SRUSeRUZJ_MQ7kNvgGrCWaq&_nc_zt=24&_nc_ht=scontent.fmnl8-2.fna&_nc_gid=ApSSKkZoXMJZBs_EfgJBwuk&oh=00_AYCtIx0XGLx25xxJFZ9uob5-zGXfnYkkZiC1_ZzBvJQmBg&oe=6722A4AA');
+            /*============================*/
+
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+
+            /* KULAY NG BORDER NG PFP MO */
+            border: 4px solid rgb(171, 171, 171);
+            /*============================*/
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+
+        /* IGNORE THIS */
+
+        @media (max-width: 600px) {
+            .profile-card {
+                margin: 0 10px;
+            }
+
+            .banner {
+                font-size: 1.2rem;
+            }
+
+            .profile-info h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="banner">
+            </div>
+            <div class="side-container">
+                <div class="picture">
+                <!-- AUTOMATIC MAWAWALA UNG TEXT PAG NAG LAGAY KA NG PFP-->
+                    <img alt="">
+
+                </div>
+            </div>
+            <div class="profile-info">
+                <h2>Kiesha Kaye De Guzman</h2>
+                <p> Proverbs 16:3 "Commit to the LORD whatever you do, and your plans will succeed."  </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

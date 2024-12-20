@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Creators</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        h1{
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1  style="text-align: center;">Creators</h1>
+    <div class="profile-container" id="profiles"></div>
+
+    <script>
+        // List of profile HTML files
+        const profileFiles = [ '1.html', '2.html', '3.html', '4.html','5.html','6.html' , "7.html", '8.html', '0.html'];
+
+        const container = document.getElementById('profiles');
+
+        // Dynamically add iframe for each profile
+        profileFiles.forEach(file => {
+            const iframe = document.createElement('iframe');
+            iframe.src = file; // Link to the individual profile file
+            container.appendChild(iframe);
+        });
+    </script>
+</body>
+</html>

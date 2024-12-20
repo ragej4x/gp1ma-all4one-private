@@ -160,12 +160,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             <h3>Your Groups</h3>
             <ul>
 
-                <?php foreach ($groups as $group): ?>
-                    <li onclick="startGroupChat(<?= $group['id'] ?>, '<?= htmlspecialchars($group['name']) ?>')">
-                        <img src="<?= !empty($group['profile_pic']) && file_exists("uploads/" . $group['profile_pic']) ? htmlspecialchars($group['profile_pic']) : 'uploads/default-profile.png' ?>" alt="Group Picture">
-                        <span><?= htmlspecialchars($group['name']) ?></span>
-                    
-                    </li>
+            <?php foreach ($groups as $group): ?>
+                <li onclick="startGroupChat(<?= $group['id'] ?>, '<?= htmlspecialchars($group['name']) ?>')">
+                    <img src="<?= !empty($group['profile_pic']) && file_exists("uploads/" . $group['profile_pic']) ? htmlspecialchars($group['profile_pic']) : 'uploads/default-profile.png' ?>" alt="Group Picture">
+                    <span><?= htmlspecialchars($group['name']) ?>
+                    <a style="" href="add_member.php?group_id=<?= $group['id'] ?>">Add Member</a>
+                    </span>
+                </li>
+
+
 
                 <?php endforeach; ?>
             

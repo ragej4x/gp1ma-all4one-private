@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a class="side-pan-button" href="../index.php">Return</a>
                 <a class="side-pan-button" href="logout.php" >Logout</a>
             </div>
+            <footer><a  href="../member/index.html" style="">Credits</a></footer>
         </div>
 
         <div class="right-panel">

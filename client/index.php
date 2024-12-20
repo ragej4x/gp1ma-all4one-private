@@ -72,7 +72,7 @@ $teacher = $pdo->query("SELECT * FROM teachers WHERE id = $teacherId")->fetch(PD
             <p>Email: <?php echo $teacher['email']; ?></p>
         </div>
     </div>
-    <button class="logout-btn" onclick="window.location.href='logout.php'">Logout</button>
+    <button class="logout-btn" onclick="window.location.href='profile.php'">Profile</button>
 </div>
 
 <div class="container">

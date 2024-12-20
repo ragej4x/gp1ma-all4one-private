@@ -1,27 +1,23 @@
 <?php
-// Start the session if not already active
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'db.php'; // Include your database connection file
+include 'db.php'; 
 
-// Redirect to login if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
 
-// Check if 'group_id' is present in the URL
 if (!isset($_GET['group_id'])) {
     echo "Group ID is not specified.";
     exit;
 }
 
-$group_id = $_GET['group_id']; // Get the group ID from the URL
+$group_id = $_GET['group_id']; 
 $user_id = $_SESSION['user_id'];
 
-// Check if the user is a member of this group
 $stmt = $pdo->prepare("SELECT * FROM group_members WHERE group_id = ? AND user_id = ?");
 $stmt->execute([$group_id, $user_id]);
 $is_member = $stmt->fetch();
@@ -31,19 +27,16 @@ if (!$is_member) {
     exit;
 }
 
-// Handle sending a new message
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message'])) {
     $message = $_POST['message'];
 
     $stmt = $pdo->prepare("INSERT INTO messages (user_id, group_id, message) VALUES (?, ?, ?)");
     $stmt->execute([$user_id, $group_id, $message]);
 
-    // Instead of returning JSON, just refresh the page
-    header("Location: group.php?group_id=$group_id"); // Redirect to the same page to avoid form resubmission
+    header("Location: group.php?group_id=$group_id"); 
     exit;
 }
 
-// Fetch all messages for the group
 function fetchMessages($pdo, $group_id) {
     $stmt = $pdo->prepare("SELECT messages.message, messages.created_at, users.username 
                            FROM messages 
@@ -54,18 +47,15 @@ function fetchMessages($pdo, $group_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Fetch group details, including the 'created_by' field
 $stmt = $pdo->prepare("SELECT name, created_by FROM groups WHERE id = ?");
 $stmt->execute([$group_id]);
 $group = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Check if the group exists
 if (!$group) {
     echo "Group not found.";
     exit;
 }
 
-// Initial message fetch
 $messages = fetchMessages($pdo, $group_id);
 ?>
 
@@ -110,30 +100,25 @@ $messages = fetchMessages($pdo, $group_id);
     <a href="index.php">Back to Chat</a>
 
     <script>
-        // Function to fetch new messages
         function fetchMessages() {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', window.location.href, true); // Call the same script for new messages
+            xhr.open('GET', window.location.href, true); 
             xhr.onload = function() {
                 if (this.status === 200) {
-                    // Find the JSON data in the response
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(this.responseText, 'text/html');
                     const chatBox = document.getElementById('chat-box');
                     const newMessages = doc.getElementById('new-messages').innerHTML;
-                    chatBox.innerHTML = newMessages; // Update chat box with new messages
+                    chatBox.innerHTML = newMessages; 
 
-                    // Scroll to the bottom of the chat
                     chatBox.scrollTop = chatBox.scrollHeight;
                 }
             };
             xhr.send();
         }
 
-        // Polling the server every 3 seconds for new messages
         setInterval(fetchMessages, 3000);
 
-        // Initial fetch of messages on page load
         fetchMessages();
     </script>
     

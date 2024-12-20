@@ -38,6 +38,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             ?>
 
             <h2 class="name"><?php echo htmlspecialchars($user['first_name']) . ' ' . htmlspecialchars($user['last_name']); ?></h2>
+            
         </div>
 
         <div class="middle">

@@ -1,5 +1,5 @@
-let currentFolderId = null; // Variable to keep track of the current folder
-let folderStack = []; // Stack to keep track of the folder history
+let currentFolderId = null; 
+let folderStack = []; 
 
 
 function fetchFolderContents(folderId) {
@@ -7,8 +7,8 @@ function fetchFolderContents(folderId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                updateFileContainer(data.files); // Update the display with the new folder contents
-                toggleBackButton(true); // Show back button if we're in a folder
+                updateFileContainer(data.files); 
+                toggleBackButton(true); 
             } else {
                 alert("Failed to load folder contents.");
             }
@@ -22,11 +22,9 @@ function selectFile(fileId) {
     const fileItem = document.querySelector(`.file-item[data-id="${fileId}"]`);
     const isFolder = fileItem.querySelector('.icon') !== null;
 
-    // Toggle selected class
     fileItem.classList.toggle('selected');
 
     if (isFolder) {
-        // Fetch the contents of the selected folder
         fetch(`get_folder_contents.php?folderId=${fileId}`)
         .then(response => response.json())
         .then(data => {
@@ -45,13 +43,11 @@ function selectFile(fileId) {
             console.error('Error fetching folder contents:', error);
         });
     } 
-    // Remove the alert for selected files
 }
 
-// Function to update the file container with new files
 function updateFileContainer(files) {
     const fileContainer = document.getElementById('file-container');
-    fileContainer.innerHTML = ''; // Clear existing items
+    fileContainer.innerHTML = ''; 
 
     files.forEach(file => {
         const fileItem = document.createElement('div');
@@ -69,9 +65,8 @@ function updateFileContainer(files) {
 }
 
 
-// Function to upload a new file
 function uploadFile() {
-    console.log("Upload file function called."); // Debugging line
+    console.log("Upload file function called."); 
     const fileInput = document.getElementById('fileInput');
     const files = fileInput.files;
 
@@ -83,10 +78,10 @@ function uploadFile() {
     const formData = new FormData();
     formData.append('fileToUpload', files[0]);
     if (currentFolderId) {
-        formData.append('parent_id', currentFolderId); // Include the current folder ID
+        formData.append('parent_id', currentFolderId); 
     }
 
-    console.log("Uploading file to server..."); // Debugging line
+    console.log("Uploading file to server..."); 
 
     fetch('upload.php', {
         method: 'POST',
@@ -94,10 +89,10 @@ function uploadFile() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Response from server:", data); // Debugging line
+        console.log("Response from server:", data);
         if (data.success) {
             alert("File uploaded successfully.");
-            selectFile(currentFolderId); // Refresh the folder contents
+            selectFile(currentFolderId); 
         } else {
             alert(data.message);
         }
@@ -113,7 +108,7 @@ function createFolder() {
         const formData = new FormData();
         formData.append('folderName', folderName);
         if (currentFolderId) {
-            formData.append('parent_id', currentFolderId); // Include current folder ID if necessary
+            formData.append('parent_id', currentFolderId); 
         }
 
         fetch('create_folder.php', {
@@ -121,16 +116,14 @@ function createFolder() {
             body: formData
         })
         .then(response => {
-            // Check if the response is okay
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
-            return response.json(); // Parse JSON
+            return response.json(); 
         })
         .then(data => {
             if (data.success) {
                 alert("Folder created successfully.");
-                // Fetch the current folder contents again to update the display
                 fetchFolderContents(currentFolderId);
             } else {
                 alert("Failed to create folder: " + data.message);
@@ -143,7 +136,6 @@ function createFolder() {
     }
 }
 
-// Function to delete a file
 function deleteFile(fileId) {
     if (confirm("Are you sure you want to delete this file?")) {
         fetch('delete_files.php', {
@@ -169,7 +161,6 @@ function deleteFile(fileId) {
     }
 }
 
-// Function to rename a file
 function renameFile(fileId) {
     const newName = prompt("Enter the new name:");
     if (newName) {
@@ -184,7 +175,7 @@ function renameFile(fileId) {
         .then(data => {
             if (data.success) {
                 alert("File renamed successfully.");
-                selectFile(currentFolderId); // Refresh the folder contents
+                selectFile(currentFolderId); 
             } else {
                 alert("Failed to rename the file.");
             }
@@ -192,17 +183,16 @@ function renameFile(fileId) {
     }
 }
 
-// Function to go back to the previous folder
 function goBack() {
     if (folderStack.length > 0) {
-        const parentFolderId = folderStack.pop(); // Get the last folder from the stack
+        const parentFolderId = folderStack.pop(); 
         fetch(`get_folder_contents.php?folderId=${parentFolderId}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                currentFolderId = parentFolderId; // Update current folder
+                currentFolderId = parentFolderId; 
                 updateFileContainer(data.files);
-                toggleBackButton(folderStack.length > 0); // Show back button if there's still history
+                toggleBackButton(folderStack.length > 0); 
             } else {
                 alert("Failed to load previous folder contents.");
             }
@@ -212,7 +202,6 @@ function goBack() {
     }
 }
 
-// Function to toggle the visibility of the back button
 function toggleBackButton(show) {
     const backButton = document.getElementById('backButton');
     backButton.style.display = show ? 'block' : 'none';
@@ -240,11 +229,11 @@ function deleteSelectedFiles() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    fileItem.remove(); // Remove the item from the UI
-                    return Promise.resolve(); // Return a resolved promise
+                    fileItem.remove();
+                    return Promise.resolve(); 
                 } else {
                     alert("Failed to delete the file: " + data.message);
-                    return Promise.reject(); // Return a rejected promise
+                    return Promise.reject(); 
                 }
             })
             .catch(error => {

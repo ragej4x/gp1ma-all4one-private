@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /*=============BUONG BODY BACKGROUND===============*/
+            background-color: #765341;
+            /*============================*/
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .profile-card {
+            /* !!! PROFILE ETO UNG STYLE NG PROFILE CARD MO !!*/
+            background: #e3c099;
+            
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .banner {
+            /* !!! COLOR NG BANNER UNG SA 
+            TAAS NA BLUE FEEL FREE TO CHANGE THE COLOR !!*/
+            background-color: #6b3e2e;
+            /*============================*/
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*============================*/
+            color: white;
+            /*============================*/
+            font-size: 1.5rem;
+        }
+
+        .side-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .picture {
+
+            /* PALITAN MO UNG URL NG IMAGE FILE MO */
+            background-image: url("https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/463226630_533547289627512_3006874481036501610_n.jpg?stp=cp6_dst-jpg&_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHVnuOUMJ29y_0fH-Cqt3Uq2gxH-ySl19raDEf7JKXX2rtHhUmqTgnTMQyqpX_yScF2f5NAkc7VMu5Xvo_sTLnh&_nc_ohc=4tHfRwnSj1AQ7kNvgH4ks8k&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=A4ZN8PUqtbtBHquyRWj88Ti&oh=00_AYBvLXG8yvdF6rv4bVW2F6b1BibGiLaqEsZc9IGWE9y3MQ&oe=6722904D");
+            /*============================*/
+
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+
+            /* KULAY NG BORDER NG PFP MO */
+            border: 4px solid rgb(0, 0, 0);
+            /*============================*/
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+
+        /* IGNORE THIS */
+
+        @media (max-width: 600px) {
+            .profile-card {
+                margin: 0 10px;
+            }
+
+            .banner {
+                font-size: 1.2rem;
+            }
+
+            .profile-info h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="banner">
+            </div>
+            <div class="side-container">
+                <div class="picture">
+                <!-- AUTOMATIC MAWAWALA UNG TEXT PAG NAG LAGAY KA NG PFP-->
+                    <img alt="">
+
+                </div>
+            </div>
+            <div class="profile-info">
+                <h2>Cloue Reign B. Besmonte</h2>
+                <p>Generating... 🐻‍❄️</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
